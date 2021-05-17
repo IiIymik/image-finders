@@ -1,0 +1,2 @@
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-gap:15px;list-style:none}.gallery_item{border:2px solid #000}.js-button{align-items:center}.btn,.js-button{display:flex;justify-content:center}.material-icons,.stats{display:flex;justify-content:space-around;align-items:center}.material-icons{flex-wrap:nowrap;margin-bottom:5px}.search-form{display:flex;justify-content:center;margin-top:10px;margin-bottom:20px}
+/*# sourceMappingURL=/goit-js-hw-13-image-finders/src.11663a34.css.map */
