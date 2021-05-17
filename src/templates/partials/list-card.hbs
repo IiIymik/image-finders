@@ -1,0 +1,33 @@
+<div class="js-container">
+    <div class="gallery-box" >
+        <ul class="gallery">
+            {{#each this}}
+            <li class="gallery_item">
+                <div class="photo-card">
+                    <img src="" alt="" />
+        
+                    <div class="stats">
+                        <p class="stats-item">
+                            <i class="material-icons">thumb_up</i>
+        
+                        </p>
+                        <p class="stats-item">
+                            <i class="material-icons">visibility</i>
+        
+                        </p>
+                        <p class="stats-item">
+                            <i class="material-icons">comment</i>
+        
+                        </p>
+                        <p class="stats-item">
+                            <i class="material-icons">cloud_download</i>
+        
+                        </p>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="btn"><button class="js-button" type="button">Load more</button></div>
+</div>
