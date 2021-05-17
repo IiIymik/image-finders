@@ -1,13 +1,13 @@
-import input from '../templates/partials/input.hbs';
-import list from '../templates/partials/list-card.hbs';
+import { BASE_URL, API_KEY } from './constants.js';
 
-const bodyEL = document.querySelector('body');
-bodyEL.innerHTML = input();
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-bodyEL.insertAdjacentHTML('beforeend', list(arr));
-
-
-
+export const getPhotos = ({current, query}) => {
+let currentPageList = current;
+  return fetch(`${BASE_URL}/?image_type=photo&orientation=horizontal&q=${query}&page=${currentPageList}&per_page=12&key=${API_KEY}`).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      }
+    }).then(arr => {return arr.hits}).catch(err => console.log(err));
+}
 
 
 
