@@ -1,17 +1,58 @@
 import input from '../templates/partials/input.hbs';
 import list from '../templates/partials/list-card.hbs';
-import {getPhotos} from './apiService.js';     
+import ImageApiService from './apiService.js';
+// import debounce from 'lodash.debounce';
 
+
+const imageApiService = new ImageApiService();
 const bodyEL = document.querySelector('body');
-bodyEL.innerHTML = input();
+bodyEL.insertAdjacentHTML('afterbegin',input());
 
-const oprtion = {
-    currentPageList: 1,
-    query: "films",
+const formEl = document.getElementById('search-form');
+const loadBtn = document.querySelector('.js-button');
+const divCarsEl = document.querySelector('.js-card__list')
+
+
+formEl.addEventListener('submit', onSearch);
+loadBtn.addEventListener('click', onLoadMore)
+
+
+// function renderImages(arrObj) {
+//     console.log(arrObj)
+//     bodyEL.insertAdjacentHTML('beforeend', list(arrObj));
+// }
+
+// function queryImg(e) {
+//     const query = e.target.value;
+//     let currentPageList = 1;
+    
+//     getPhotos(query,currentPageList).then(renderImages);
+//     clearRender()
+// }
+
+// function clearRender() {
+//     if (query = "") {
+//         bodyEL.innerHTML = "";
+//     }
+// }
+
+function onSearch(e) {
+    e.preventDefault();
+    clearImageContainer()
+    imageApiService.query = e.currentTarget.elements.query.value;
+    imageApiService.resetPage();
+    imageApiService.fetchArticles().then(appendImageMarcup);
 }
 
-getPhotos(oprtion).then(renderImages);
+function onLoadMore() {
+    imageApiService.fetchArticles().then(appendImageMarcup);
+}
 
-function renderImages(arrObj) {
-    bodyEL.insertAdjacentHTML('beforeend', list(arrObj));
+function appendImageMarcup(arrImages) {
+    // console.log(arrImages)
+    divCarsEl.insertAdjacentHTML('beforeend', list(arrImages));
+}
+
+function clearImageContainer() {
+    divCarsEl.innerHTML = "";
 }

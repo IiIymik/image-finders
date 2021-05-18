@@ -1,13 +1,13 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  //   grid-template-rows: repeat(, 5vw);
   grid-gap: 15px;
   list-style: none;
+  padding-left: 5px;
 }
 
 .gallery_item {
-  border: 2px solid black;
+  border: 1px solid black;
   // border-radius: 5%;
 }
 .js-button {
