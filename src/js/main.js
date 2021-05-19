@@ -1,62 +1,50 @@
-import input from '../templates/partials/input.hbs';
 import list from '../templates/partials/list-card.hbs';
 import ImageApiService from './apiService.js';
 // import debounce from 'lodash.debounce';
+import LoadMoreBTN from './load-more-btn';
 
+const refs = {
+    formEl: document.getElementById('search-form'),
+    boxEl: document.querySelector('.js-card__list'),
+}
 
 const imageApiService = new ImageApiService();
-const bodyEL = document.querySelector('body');
-bodyEL.insertAdjacentHTML('afterbegin',input());
-
-const formEl = document.getElementById('search-form');
-const loadBtn = document.querySelector('.js-button');
-const divCarsEl = document.querySelector('.js-card__list')
+const loadMoreBTN = new LoadMoreBTN({
+    selector: ".js-button",
+    hidden: true,  
+})
 
 
-formEl.addEventListener('submit', onSearch);
-loadBtn.addEventListener('click', onLoadMore)
-
-
-// function renderImages(arrObj) {
-//     console.log(arrObj)
-//     bodyEL.insertAdjacentHTML('beforeend', list(arrObj));
-// }
-
-// function queryImg(e) {
-//     const query = e.target.value;
-//     let currentPageList = 1;
-    
-//     getPhotos(query,currentPageList).then(renderImages);
-//     clearRender()
-// }
-
-// function clearRender() {
-//     if (query = "") {
-//         bodyEL.innerHTML = "";
-//     }
-// }
+refs.formEl.addEventListener('submit', onSearch);
+loadMoreBTN.refs.button.addEventListener('click', disableAndFetch)
 
 function onSearch(e) {
     e.preventDefault();
     
     imageApiService.query = e.currentTarget.elements.query.value;
     
-    if(imageApiService.query === ''){
+    if (imageApiService.query === '') {
+        clearContainer();
+        loadMoreBTN.hide();
         return console.error('need riting');
     }
+
+    loadMoreBTN.show();
     imageApiService.resetPage();
-    imageApiService.fetchArticles().then(appendImageMarcup);
+    clearContainer();
+    disableAndFetch();
 }
 
-function onLoadMore() {
+function disableAndFetch() {
+    loadMoreBTN.disable();
     imageApiService.fetchArticles().then(appendImageMarcup);
 }
 
 function appendImageMarcup(arrImages) {
-    // console.log(arrImages)
-    divCarsEl.insertAdjacentHTML('beforeend', list(arrImages));
+    loadMoreBTN.enable();
+    refs.boxEl.insertAdjacentHTML('beforeend', list(arrImages));
 }
 
-function clearImageContainer() {
-    divCarsEl.innerHTML = "";
+function clearContainer() {
+    refs.boxEl.innerHTML = "";
 }

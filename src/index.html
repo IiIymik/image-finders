@@ -13,8 +13,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body>
+    <form class="search-form" id="search-form">
+      <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+      <button type="submit" class="btn">Find</button>
+    </form>
     <div class="js-card__list"></div>
-    <div class="btn"><button class="js-button" type="button"><span></span><span class="label"> Load more</span></button></div>
+    <button class="btn js-button" type="button">
+      <span class="spiner"></span><span class="label"></span>
+    </button>
     <script src="./index.js"></script>
   </body>
 </html>
