@@ -18,17 +18,19 @@ export default class foundImageApiService {
   }
 
   fetchArticles() {
-    console.log(this)
-    return fetch(`${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
+  const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`;
+
+    return fetch(url)
     .then(response => {
       if (response.status === 200) {
         return response.json();
       }
-    }).then(arr => {
+    }).then(({hits}) => {
       this.incrementPage();
-      return arr.hits;
+      return hits;
     })
   }
+
   incrementPage() {
     this.page += 1;
   }

@@ -38,8 +38,12 @@ loadBtn.addEventListener('click', onLoadMore)
 
 function onSearch(e) {
     e.preventDefault();
-    clearImageContainer()
+    
     imageApiService.query = e.currentTarget.elements.query.value;
+    
+    if(imageApiService.query === ''){
+        return console.error('need riting');
+    }
     imageApiService.resetPage();
     imageApiService.fetchArticles().then(appendImageMarcup);
 }
