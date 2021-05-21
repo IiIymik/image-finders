@@ -44,7 +44,10 @@ function appendImageMarcup(arrImages) {
     loadMoreBTN.enable();
     refs.boxEl.insertAdjacentHTML('beforeend', list(arrImages));
 
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+});
 }
 
 
