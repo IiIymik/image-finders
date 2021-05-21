@@ -1,14 +1,11 @@
 import list from '../templates/partials/list-card.hbs';
 import ImageApiService from './apiService.js';
-import * as basicLightbox from 'basiclightbox';
+// import * as basicLightbox from 'basiclightbox';
 import LoadMoreBTN from './load-more-btn';
-
-
 
 const refs = {
     formEl: document.getElementById('search-form'),
     boxEl: document.querySelector('.js-card__list'),
-    hiddenElement: document.querySelector('.box'),
 }
 
 const imageApiService = new ImageApiService();
@@ -46,14 +43,18 @@ function disableAndFetch() {
 function appendImageMarcup(arrImages) {
     loadMoreBTN.enable();
     refs.boxEl.insertAdjacentHTML('beforeend', list(arrImages));
-    hiddenElement.scrollIntoView({block: "end ", behavior: "smooth"});
+
+    window.scrollTo(0, document.body.scrollHeight);
 }
+
+
+
 
 function clearContainer() {
     refs.boxEl.innerHTML = "";
 }
 
-const largeImg = basicLightbox.create(`
-<img src="" alt="">`)
+// const largeImg = basicLightbox.create(`
+// <img src="" alt="">`)
 
-// console.log(largeImg.show());
+// // console.log(largeImg.show());
