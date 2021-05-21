@@ -1,34 +1,34 @@
 <div class="js-container">
-    <div class="gallery-box" >
-        <ul class="gallery">
-            {{#each this}}
-            <li class="gallery_item">
-                <div class="photo-card">
-                    <div class="card-img">
-                        <img src="{{webformatURL}}" alt="{{tags}}"  />
-                    </div>
-        
-                    <div class="stats">
-                        <p class="stats-item">
-                            <i class="material-icons">thumb_up</i>
-                            {{likes}}
-                        </p>
-                        <p class="stats-item">
-                            <i class="material-icons">visibility</i>
-                            {{views}}
-                        </p>
-                        <p class="stats-item">
-                            <i class="material-icons">comment</i>
-                            {{comments}}
-                        </p>
-                        <p class="stats-item">
-                            <i class="material-icons">cloud_download</i>
-                            {{downloads}}
-                        </p>
-                    </div>
+<ul class="gallery list">
+    {{#each this}}
+    <li class="gallery_item">
+        <article class="card">
+            <div class="photo-card">
+                <div class="card-img">
+                    <img src="{{webformatURL}}" alt="{{tags}}" width="{{webformatWidth}}" height="{{webformatHeight}}" />
                 </div>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+
+                <div class="stats">
+                    <p class="stats-item">
+                        <i class="material-icons">thumb_up</i>
+                        {{likes}}
+                    </p>
+                    <p class="stats-item">
+                        <i class="material-icons">visibility</i>
+                        {{views}}
+                    </p>
+                    <p class="stats-item">
+                        <i class="material-icons">comment</i>
+                        {{comments}}
+                    </p>
+                    <p class="stats-item">
+                        <i class="material-icons">cloud_download</i>
+                        {{downloads}}
+                    </p>
+                </div>
+            </div>
+        </article>
+    </li>
+    {{/each}}
+</ul>
 </div>
