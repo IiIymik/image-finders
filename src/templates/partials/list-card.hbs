@@ -1,10 +1,11 @@
 <div class="js-container">
 <ul class="gallery list">
     {{#each this}}
-    <li class="gallery_item">
+    <li class="gallery_item" id={{id}}>
         <article class="card">
             <div class="photo-card">
                 <div class="card-img">
+                   <img src="{{largeImageURL}}" alt="{{tags}}" width="800px" height="600px" hidden">
                     <img src="{{webformatURL}}" alt="{{tags}}" width="{{webformatWidth}}" height="{{webformatHeight}}" />
                 </div>
 
