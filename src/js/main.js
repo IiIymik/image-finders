@@ -1,6 +1,5 @@
 import list from '../templates/partials/list-card.hbs';
 import ImageApiService from './apiService.js';
-import 'basiclightbox/dist/basiclightbox.min.js';
 import * as basicLightbox from 'basiclightbox';
 import LoadMoreBTN from './load-more-btn';
 
