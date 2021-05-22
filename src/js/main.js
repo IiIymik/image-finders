@@ -27,7 +27,7 @@ function onSearch(e) {
     if (imageApiService.query === '') {
         clearContainer();
         loadMoreBTN.hide();
-        return console.error('need riting');
+        return console.error('sth wrong');
     }
 
     loadMoreBTN.show();
@@ -38,32 +38,39 @@ function onSearch(e) {
 
 function disableAndFetch() {
     loadMoreBTN.disable();
-    imageApiService.fetchArticles().then(appendImageMarcup);
+    imageApiService.fetchArticles().then(appendImageMarcup).catch(errMessage);
 }
 
 function appendImageMarcup(arrImages) {
     loadMoreBTN.enable();
     refs.boxEl.insertAdjacentHTML('beforeend', list(arrImages));
-    const imgLink = document.querySelectorAll('.gallery_item');
-    imgLink.forEach(e => {
-        e.addEventListener('click', openBigImg);
-    });
+
+    const imgLinkUl = document.querySelector('.gallery');
+    imgLinkUl.addEventListener('click', openBigImg);
 
     window.scrollTo({
     top: document.body.scrollHeight,
     behavior: "smooth"
 });
-}
+};
 
 function clearContainer() {
     refs.boxEl.innerHTML = "";
-}
+};
 
 function openBigImg(e) {
-    const currCard = e.currentTarget.children[0].childNodes[1].childNodes[1].children[0].currentSrc;
+    const currCard = e.target.src;
+
+    if (currCard === undefined) {
+        return
+    }
     const instance = basicLightbox.create(`
     <img src="${currCard}" width="800" height="600">
 `);
 
     instance.show();
+};
+
+function errMessage(err) {
+    console.log(err)
 }
