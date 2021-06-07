@@ -12,7 +12,7 @@ const refs = {
 const imageApiService = new ImageApiService();
 const loadMoreBTN = new LoadMoreBTN({
     selector: ".js-button",
-    hidden: true,  
+    hidden: true,
 })
 
 
@@ -21,9 +21,9 @@ loadMoreBTN.refs.button.addEventListener('click', disableAndFetch);
 
 function onSearch(e) {
     e.preventDefault();
-    
+
     imageApiService.query = e.currentTarget.elements.query.value;
-    
+
     if (imageApiService.query === '') {
         clearContainer();
         loadMoreBTN.hide();
@@ -74,3 +74,7 @@ function openBigImg(e) {
 function errMessage(err) {
     console.log(err)
 }
+// new fecth
+const API_KEY = 'a6a422d110dec9c7fa9eeee757b6f274';
+const urlN = 'https://api.themoviedb.org/3/trending/movie/week?api_key=a6a422d110dec9c7fa9eeee757b6f274';
+fetch(urlN).then(res => res.json()).then(data=>console.log(data.results))
